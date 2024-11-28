@@ -6,8 +6,12 @@ import streamlit as st
 from jinja2 import Environment, FileSystemLoader
 
 # 起動command streamlit run v3.py --server.port 8080
-
-genai.configure(api_key='API_KEY')
+# 環境変数からAPIキーを取得
+api_key = os.environ.get('API_KEY')
+if not api_key:
+    st.error("APIキーが設定されていません。環境変数 'API_KEY' を設定してください。")
+    st.stop()
+genai.configure(api_key)
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 st.title("タイヤ保険 AI有無責判定システム")
