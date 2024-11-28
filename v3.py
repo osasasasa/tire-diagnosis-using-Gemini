@@ -11,7 +11,7 @@ api_key = os.environ.get('API_KEY')
 if not api_key:
     st.error("APIキーが設定されていません。環境変数 'API_KEY' を設定してください。")
     st.stop()
-genai.configure(api_key)
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel(model_name="gemini-1.5-flash-002")
 
 st.title("タイヤ保険 AI有無責判定システム")
